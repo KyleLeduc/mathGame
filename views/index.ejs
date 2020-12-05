@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Number Juggling Game</title>
+    <link rel='stylesheet' href='./stylesheets/mathGame/numberJuggling/style.css'>
+  </head>
+  <body>
+    <h1>Number Juggling</h1>
+    <h2 id="numberDisplay">Choose your settings and press the "Start Game" button</h2>
+
+    <form id="gameSettings">
+      <div>
+        <label for="numRounds">Number of Rounds</label>
+        <select name="numRounds" id="numRounds">
+          <option value="2">2</option>
+          <option value="4">4</option>
+          <option value="6">6</option>
+          <option value="8">8</option>
+          <option value="10">10</option>
+        </select>
+        
+        <label for="roundLength">Length of Round</label>
+        <select name="roundLength" id="roundLength">
+          <option value="1000">1 Seconds</option>
+          <option value="2000">2 Seconds</option>
+          <option value="3000">3 Seconds</option>
+          <option value="4000">4 Seconds</option>
+          <option value="5000">5 Seconds</option>
+          <option value="6000">6 Seconds</option>
+        </select>
+      </div>
+      <div>
+        <label for="plus">Addition</label>
+        <input type="checkbox" name="mathOperator" id="plus" checked>
+        <label for="minus">Subtraction</label>
+        <input type="checkbox" name="mathOperator" id="minus">
+      </div>
+      
+      <div>
+        <label for="single">Single Digit</label>
+        <input type="checkbox" name="numRange" id="single" checked>
+        <label for="double">Double Digit</label>
+        <input type="checkbox" name="numRange" id="double">
+        <label for="triple">Triple Digit</label>
+        <input type="checkbox" name="numRange" id="triple">
+      </div>
+  
+      <button id="start">Start Game</button>
+    </form>
+    <form id="answerField">
+      <label for="answer">Answer:</label>
+      <input type="text" name="answer" id="answer" placeholder="What's the total?">
+      <button type="submit">Submit</button>
+    </form>
+    <script src="./js/mathGame/numberJuggling/controller.js"></script>
+  </body>
+</html>
