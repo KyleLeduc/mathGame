@@ -34,7 +34,7 @@ settingsForm.addEventListener('submit', (e) => {
     if (!formVal(numRange, game.numRange)) {
         return numberDisplay.innerText = 'Please select a number range';
     }
-    settingsForm.style.display = "none";
+    settingsForm.classList.toggle("d-none");
     playGame(game);
 })
 answerField.addEventListener('submit', (e) => {
@@ -51,8 +51,8 @@ answerField.addEventListener('submit', (e) => {
     if (guess === total) {
         numberDisplay.innerText = `${guess} is CORRECT!!! Play again?`
         e.target.elements.answer.value = "";
-        answerField.style.display = "none";
-        settingsForm.style.display = "block";
+        answerField.classList.toggle("d-none");
+        settingsForm.classList.toggle("d-none");
     }
 })
 
@@ -120,6 +120,7 @@ function operatorSelector(operator, number) {
 // *************************
 playGame = async (gameSettings) => {
     const { numRounds, roundLen, mathOperator, numRange} = gameSettings;
+    numberDisplay.classList.add("mt-5");
     await countdown();
     for (let i = 0; i <= numRounds; i++) {
         let number = rangeSelector(numRange);
@@ -135,8 +136,9 @@ playGame = async (gameSettings) => {
         numberDisplay.innerText = "";
         await roundTimer(500);
     }
+    numberDisplay.classList.remove("mt-5");
     numberDisplay.innerText = "What's the total?";
-    answerField.style.display = "block";
+    answerField.classList.toggle("d-none");
 }
 
 // *********************

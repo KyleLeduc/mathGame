@@ -2,56 +2,88 @@
 <html>
   <head>
     <title>Number Juggling Game</title>
-    <link rel='stylesheet' href='./stylesheets/mathGame/numberJuggling/style.css'>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+		integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel='stylesheet' href='/stylesheets/style.css'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
   </head>
   <body>
-    <h1>Number Juggling</h1>
-    <h2 id="numberDisplay">Choose your settings and press the "Start Game" button</h2>
-
-    <form id="gameSettings">
-      <div>
-        <label for="numRounds">Number of Rounds</label>
-        <select name="numRounds" id="numRounds">
-          <option value="2">2</option>
-          <option value="4">4</option>
-          <option value="6">6</option>
-          <option value="8">8</option>
-          <option value="10">10</option>
-        </select>
-        
-        <label for="roundLength">Length of Round</label>
-        <select name="roundLength" id="roundLength">
-          <option value="1000">1 Seconds</option>
-          <option value="2000">2 Seconds</option>
-          <option value="3000">3 Seconds</option>
-          <option value="4000">4 Seconds</option>
-          <option value="5000">5 Seconds</option>
-          <option value="6000">6 Seconds</option>
-        </select>
-      </div>
-      <div>
-        <label for="plus">Addition</label>
-        <input type="checkbox" name="mathOperator" id="plus" checked>
-        <label for="minus">Subtraction</label>
-        <input type="checkbox" name="mathOperator" id="minus">
-      </div>
-      
-      <div>
-        <label for="single">Single Digit</label>
-        <input type="checkbox" name="numRange" id="single" checked>
-        <label for="double">Double Digit</label>
-        <input type="checkbox" name="numRange" id="double">
-        <label for="triple">Triple Digit</label>
-        <input type="checkbox" name="numRange" id="triple">
-      </div>
+    <main class="container col-sm-8">
+      <h1 class="text-center my-4">Number Juggling</h1>
+      <h2 id="numberDisplay" class="text-center text-justify mb-4">Choose your settings and press <br> "Start Game"</h2>
   
-      <button id="start">Start Game</button>
-    </form>
-    <form id="answerField">
-      <label for="answer">Answer:</label>
-      <input type="text" name="answer" id="answer" placeholder="What's the total?">
-      <button type="submit">Submit</button>
-    </form>
-    <script src="./js/mathGame/numberJuggling/controller.js"></script>
+      <form id="gameSettings">
+        <div class="form-group d-flex flex-row justify-content-center mb-2">
+          <div class="form-group col-auto">
+            <label for="numRounds" class="mr-sm-3">Number of Rounds</label>
+            <select name="numRounds" id="numRounds" class="form-control">
+              <option value="2">2</option>
+              <option value="4">4</option>
+              <option value="6">6</option>
+              <option value="8">8</option>
+              <option value="10">10</option>
+            </select>
+          </div>
+        
+          <div class="form-group col-auto">
+            <label for="roundLength" class="mr-sm-3">Length of Round</label>
+            <select name="roundLength" id="roundLength" class="form-control">
+              <option value="1000">1 Seconds</option>
+              <option value="2000">2 Seconds</option>
+              <option value="3000">3 Seconds</option>
+              <option value="4000">4 Seconds</option>
+              <option value="5000">5 Seconds</option>
+              <option value="6000">6 Seconds</option>
+            </select>
+          </div>
+        </div>
+        <h4 class="text-center">Math Operations</h3>
+        <div class="form-group mb-4 text-center">
+          <div class="form-check form-check-inline ml-1">
+            <input  class="form-check-input" type="checkbox" name="mathOperator" id="plus" checked>
+            <label for="plus" class="form-check-label col-form-label">Addition</label>
+          </div>
+          <div class="form-check form-check-inline mr-0">
+            <input class="form-check-input" type="checkbox" name="mathOperator" id="minus">
+            <label for="minus" class="form-check-label col-form-label">Subtraction</label>
+          </div>
+        </div>
+        <h4 class="text-center">Number Ranges</h3>
+        <div class="form-group mb-4 text-center">
+          <div class="form-check form-check-inline col-auto p-0 ml-2 mr-1">
+            <input class="form-check-input" type="checkbox" name="numRange" id="single" checked>
+            <label class="form-check-label col-form-label" for="single">Single Digit</label>
+          </div>
+          <div class="form-check form-check-inline col-auto p-0 mx-0">
+            <input class="form-check-input" type="checkbox" name="numRange" id="double">
+            <label class="form-check-label col-form-label" for="double">Double Digit</label>
+          </div>
+          <div class="form-check form-check-inline col-auto p-0 mr-0 ml-1">
+            <input class="form-check-input" type="checkbox" name="numRange" id="triple">
+            <label class="form-check-label col-form-label" for="triple">Triple Digit</label>
+          </div>
+        </div>
+        <div class="text-center">
+          <button id="start" class="btn btn-primary">Start Game</button>
+        </div>
+      </form>
+      <form id="answerField" autocomplete="off" class="d-none text-center mx-auto">
+        <div class="form-group row justify-content-center">
+          <label for="answer"></label>
+          <input class="form-control col-7 col-md-6 col-lg-5 col-xl-4" type="number" name="answer" id="answer" placeholder="What's the total?">
+        </div>
+        <button class="btn btn-primary" type="submit">Submit</button>
+      </form>
+    </main>
+    <script src="/javascripts/controller.js"></script>
   </body>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+    integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+    integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+    crossorigin="anonymous"></script>
 </html>
