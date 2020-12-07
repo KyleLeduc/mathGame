@@ -46,10 +46,10 @@ answerField.addEventListener('submit', (e) => {
         return;
     }
     if (guess !== total) {
-        numberDisplay.innerText = `${guess} is WRONG!! Try Again!`
+        numberDisplay.innerHTML = `${guess} is WRONG!!<br>Try Again!`
     }
     if (guess === total) {
-        numberDisplay.innerText = `${guess} is CORRECT!!! Play again?`
+        numberDisplay.innerHTML = `${guess} is CORRECT!!!<br>Play Again?`
         e.target.elements.answer.value = "";
         answerField.classList.toggle("d-none");
         settingsForm.classList.toggle("d-none");
