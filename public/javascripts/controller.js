@@ -4,6 +4,8 @@
 const numberDisplay = document.querySelector('#numberDisplay');
 const settingsForm = document.querySelector('#gameSettings');
 const answerField = document.querySelector('#answerField');
+const resetButton = document.querySelector('#resetButton');
+const answerButton = document.querySelector('#answerSubmit').classList;
 
 // ***********************
 // * Game Initialization *
@@ -14,13 +16,21 @@ function resetGame() {
     game.mathOperator = [],
     game.numRange = [],
     game.total = 0;
+    game.guessCount = 0;
+}
+function resetDisplay() {
+    settingsForm.classList.remove('d-none');
+    answerField.classList.add('d-none');
+    answerButton.remove('d-none');
+    resetButton.classList.add('d-none');
+    numberDisplay.innerHTML = 'Choose your settings and press <br> "Start Game"'
 }
 const game = {}
 resetGame();
 
-// ************************
-// * Form Event Listeners *
-// ************************
+// *******************
+// * Event Listeners *
+// *******************
 settingsForm.addEventListener('submit', (e) => {
     e.preventDefault();
     resetGame();
@@ -45,17 +55,29 @@ answerField.addEventListener('submit', (e) => {
         numberDisplay.innerText = "Your answer needs to be a number";
         return;
     }
-    if (guess !== total) {
-        numberDisplay.innerHTML = `${guess} is WRONG!!<br>Try Again!`
+    else if (game.guessCount >= 2) {
+        resetButton.classList.remove('d-none');
+        answerButton.add('d-none');
+        e.target.elements.answer.value = "";
+        answerField.classList.add('d-none');
+        game.guessCount++;
+        return numberDisplay.innerHTML = `${guess} was WRONG!<br>Attempt ${game.guessCount} of 3<br>No Attempts Remain`;
+    } 
+    else if (guess !== total) {
+        game.guessCount ++;
+        numberDisplay.innerHTML = `${guess} is WRONG!!<br>Try Again!<br>Attempt ${game.guessCount} of 3`
     }
-    if (guess === total) {
+    else if (guess === total) {
         numberDisplay.innerHTML = `${guess} is CORRECT!!!<br>Play Again?`
         e.target.elements.answer.value = "";
         answerField.classList.toggle("d-none");
         settingsForm.classList.toggle("d-none");
     }
 })
-
+resetButton.addEventListener('click', () => {
+    resetDisplay();
+    resetGame();
+})
 // ***********************************************
 // * Form validation and game settings populator *
 // ***********************************************
@@ -138,7 +160,7 @@ playGame = async (gameSettings) => {
     }
     numberDisplay.classList.remove("mt-5");
     numberDisplay.innerText = "What's the total?";
-    answerField.classList.toggle("d-none");
+    answerField.classList.remove("d-none");
 }
 
 // *********************
