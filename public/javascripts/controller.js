@@ -166,6 +166,7 @@ playGame = async (gameSettings) => {
     numberDisplay.classList.remove("mt-5");
     numberDisplay.innerText = "What's the total?";
     answerField.classList.remove("d-none");
+    answerField.elements.answer.focus()
 }
 
 // *********************
