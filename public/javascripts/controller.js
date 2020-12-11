@@ -23,6 +23,7 @@ function resetDisplay() {
     answerField.classList.add('d-none');
     answerButton.remove('d-none');
     resetButton.classList.add('d-none');
+    resetButton.classList.remove('btn-danger', 'btn-warning');
     numberDisplay.innerHTML = 'Choose your settings and press <br> "Start Game"'
 }
 const game = {}
@@ -44,7 +45,7 @@ settingsForm.addEventListener('submit', (e) => {
     if (!formVal(numRange, game.numRange)) {
         return numberDisplay.innerText = 'Please select a number range';
     }
-    settingsForm.classList.toggle("d-none");
+    settingsForm.classList.add("d-none");
     playGame(game);
 })
 answerField.addEventListener('submit', (e) => {
@@ -57,6 +58,8 @@ answerField.addEventListener('submit', (e) => {
     }
     else if (game.guessCount >= 2) {
         resetButton.classList.remove('d-none');
+        resetButton.classList.add('btn-danger');
+        resetButton.innerText = "Try Again?";
         answerButton.add('d-none');
         e.target.elements.answer.value = "";
         answerField.classList.add('d-none');
@@ -70,8 +73,10 @@ answerField.addEventListener('submit', (e) => {
     else if (guess === total) {
         numberDisplay.innerHTML = `${guess} is CORRECT!!!<br>Play Again?`
         e.target.elements.answer.value = "";
-        answerField.classList.toggle("d-none");
-        settingsForm.classList.toggle("d-none");
+        resetButton.classList.add('btn-success');
+        resetButton.innerText = "Play Again?";
+        answerField.classList.add("d-none");
+        resetButton.classList.remove('d-none');
     }
 })
 resetButton.addEventListener('click', () => {
